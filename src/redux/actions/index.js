@@ -13,6 +13,10 @@ export const updateScore = (numero) => ({
   payload: numero,
 });
 
+export const RESET_STATE = 'RESET_STATE';
+
+export const resetState = () => ({ type: RESET_STATE });
+
 export function tokenThunk(name, email, func) {
   return async (dispatch) => {
     const URL = 'https://opentdb.com/api_token.php?command=request';

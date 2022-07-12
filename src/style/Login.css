@@ -9,3 +9,7 @@ place-items: center;
 justify-content: center;
 position: absolute;
 }
+
+button {
+    cursor: pointer;
+}

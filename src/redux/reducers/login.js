@@ -26,6 +26,15 @@ const player = (state = initialState, action) => {
 
     };
   }
+  case 'RESET_STATE':
+    return {
+      ...state,
+      name: '',
+      assertions: 0,
+      score: 0,
+      gravatarEmail: '',
+      token: '',
+    };
   default:
     return {
       ...state,

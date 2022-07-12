@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../style/Ranking.css';
 
 class Ranking extends React.Component {
     state = {
@@ -20,24 +21,37 @@ class Ranking extends React.Component {
     render() {
       const { ranking } = this.state;
       return (
-        <div>
+        <div className="ranking">
           <h1 data-testid="ranking-title">Ranking</h1>
           {
             ranking[0] && (
               ranking.map((player, index) => (
-                <div key={ player.name }>
+                <div
+                  className="ranking-card"
+                  key={ player.name }
+                >
                   <img
+                    style={ { borderRadius: '15px' } }
                     src={ player.picture }
                     alt="userImg"
                   />
-                  <span data-testid={ `player-name-${index}` }>{player.name}</span>
+                  <span
+                    className="card-text"
+                    data-testid={ `player-name-${index}` }
+                  >
+                    {player.name}
+                  </span>
                   <span data-testid={ `player-score-${index}` }>{player.score}</span>
                 </div>
               ))
             )
           }
           <Link to="/">
-            <button type="button" data-testid="btn-go-home">
+            <button
+              className="home-button"
+              type="button"
+              data-testid="btn-go-home"
+            >
               Inicio
             </button>
           </Link>

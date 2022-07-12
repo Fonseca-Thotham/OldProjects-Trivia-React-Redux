@@ -167,6 +167,13 @@ state = {
     }
   }
 
+  // Essa função foi disponibilizada por Jessy Damasceno no slack para corrigir o problema das questões serem exibidas sem os caracteres especiais. Obrigado, Jessy!
+  decodeEntity(inputStr) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = inputStr;
+    return textarea.value;
+  }
+
   render() {
     const lastQuestion = 4;
     const { hashValidate, questions,
@@ -193,17 +200,20 @@ state = {
               <h2 data-testid="timer" className={ this.blinker() }>{ seconds }</h2>
               <div className="questions-board">
                 <h3 data-testid="question-text">
-                  {qstSelect?.question}
+                  {this.decodeEntity(qstSelect?.question)}
                 </h3>
               </div>
 
-              <ul className="d-flex flex-column justify-content-center ask-board" data-testid="answer-options">
+              <ul
+                className="d-flex flex-column justify-content-center ask-board"
+                data-testid="answer-options"
+              >
                 {answers?.map((resp, index) => {
                   const value = resp.testId === correctAnswer ? (
                     correctBackground) : incorrectBackground;
                   return (
                     <button
-                      className="btn btn-outline-dark fs-2"
+                      className="btn btn-outline-dark"
                       data-testid={ resp.testId }
                       style={ { fontWeight: 'bolder',
                         border: value !== 'white' && this.colorDecider(resp.testId),
@@ -214,14 +224,14 @@ state = {
                       onClick={ () => this.onClick(resp) }
                       disabled={ disableButtons }
                     >
-                      {resp.resposta}
+                      {this.decodeEntity(resp.resposta)}
                     </button>
                   );
                 })}
               </ul>
               { !isHidden && questionsIndex < lastQuestion && (
                 <button
-                  className="btn btn-light"
+                  className="btn btn-light next"
                   type="button"
                   data-testid="btn-next"
                   onClick={ this.nextClick }
@@ -232,7 +242,7 @@ state = {
               <Link to="/feedback">
                 { questionsIndex === lastQuestion && (
                   <button
-                    className="btn btn-outline-success"
+                    className="btn btn-light next"
                     type="button"
                     data-testid="btn-next"
                   >
