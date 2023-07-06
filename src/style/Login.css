@@ -1,0 +1,15 @@
+.login {
+background: radial-gradient(circle, rgb(94,190,131) 0%, rgb(0,48,36) 100%);
+font-size: larger;
+color: rgb(0, 0, 0);
+height: 100%;
+width: 100%;
+display: flex;
+place-items: center;
+justify-content: center;
+position: absolute;
+}
+
+button {
+    cursor: pointer;
+}

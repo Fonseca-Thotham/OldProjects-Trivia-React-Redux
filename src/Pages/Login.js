@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 import { loginAction, tokenThunk } from '../redux/actions';
+import '../style/Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -48,12 +50,15 @@ class Login extends React.Component {
   render() {
     const { name, email, isDisabled, redirect } = this.state;
     return (
-      <div>
+      <div className="login">
+        <img src="https://i.ibb.co/7b6KyW0/tryvia.png" alt="logo" border="0" />
         {redirect && <Redirect to="/game" />}
-        <form>
+        <form className="d-flex flex-column justify-content-center">
           <label htmlFor="name">
             Name
+            <br />
             <input
+              style={ { borderRadius: '5px' } }
               type="text"
               id="name"
               data-testid="input-player-name"
@@ -63,7 +68,9 @@ class Login extends React.Component {
           </label>
           <label htmlFor="email">
             Email
+            <br />
             <input
+              style={ { borderRadius: '5px' } }
               type="email"
               id="email"
               data-testid="input-gravatar-email"
@@ -71,21 +78,28 @@ class Login extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <button
+          <br />
+          <Button
+            className="btn btn-light"
             type="button"
             data-testid="btn-play"
             disabled={ isDisabled }
             onClick={ this.onClick }
           >
             Play
-          </button>
-          <Link to="/settings">
-            <button
+          </Button>
+          <Link
+            to="/settings"
+            className="d-flex flex-column justify-content-center"
+            style={ { textDecoration: 'none' } }
+          >
+            <Button
+              className="btn btn-dark"
               type="button"
               data-testid="btn-settings"
             >
-              Configuração
-            </button>
+              Settings
+            </Button>
           </Link>
         </form>
       </div>

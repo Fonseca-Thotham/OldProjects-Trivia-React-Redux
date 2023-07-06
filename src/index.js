@@ -1,20 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import Games from './Pages/Games';
-import Settings from './Pages/Settings';
 import store from './redux/store';
 
 ReactDOM.render(
   <Provider store={ store }>
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ App } />
-        <Route path="/settings" component={ Settings } />
-        <Route path="/game" component={ Games } />
-      </Switch>
+      <App />
     </BrowserRouter>
   </Provider>,
 

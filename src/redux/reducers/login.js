@@ -1,13 +1,39 @@
-const initialState = { token: '', name: '', email: '' };
+const initialState = {
+  name: '',
+  assertions: 0,
+  score: 0,
+  gravatarEmail: '',
+  token: '',
+};
 
-const logRdc = (state = initialState, action) => {
+const player = (state = initialState, action) => {
   switch (action.type) {
   case 'LOGIN_ACTION':
     return {
       ...state,
       token: action.payload.token,
       name: action.payload.name,
-      email: action.payload.email,
+      gravatarEmail: action.payload.email,
+    };
+  case 'UPDATE_SCORE': {
+    const { score, assertions } = state;
+    const newScore = score + action.payload;
+    const newAssertions = assertions + 1;
+    return {
+      ...state,
+      score: newScore,
+      assertions: newAssertions,
+
+    };
+  }
+  case 'RESET_STATE':
+    return {
+      ...state,
+      name: '',
+      assertions: 0,
+      score: 0,
+      gravatarEmail: '',
+      token: '',
     };
   default:
     return {
@@ -16,4 +42,4 @@ const logRdc = (state = initialState, action) => {
   }
 };
 
-export default logRdc;
+export default player;
